@@ -35,12 +35,12 @@ ON CONFLICT DO NOTHING;
 
 --changeset goodwoor:10
 --comment Связывание заказов с продуктами (order_items)
-INSERT INTO order_items (order_id, product_id, quantity) VALUES
-(1, 1, 1), -- В заказе №1 лежит 1 смартфон
-(1, 3, 2), -- В заказе №1 также лежит 2 чехла
-(2, 2, 1), -- В заказе №2 лежат 1 наушники
-(3, 1, 1), -- В заказе №3 лежит 1 смартфон
-(3, 4, 3)  -- В заказе №3 также лежат 3 кабеля
+INSERT INTO order_items (order_id, product_id) VALUES
+(1, 1),
+(1, 3),
+(2, 2),
+(3, 1),
+(3, 4)
 ON CONFLICT DO NOTHING;
 
 --changeset goodwoor:11

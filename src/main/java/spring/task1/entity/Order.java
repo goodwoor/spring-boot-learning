@@ -1,19 +1,13 @@
 package spring.task1.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-@EqualsAndHashCode
 @Table(name = "orders")
 public class Order {
 
@@ -23,6 +17,7 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     private User user;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -38,4 +33,75 @@ public class Order {
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    public Order(Long id, User user, Set<Product> products, String status, LocalDateTime createdAt) {
+        this.id = id;
+        this.user = user;
+        this.products = products;
+        this.status = status;
+        this.createdAt = createdAt;
+    }
+
+    public Order() {}
+
+    @Override
+    public boolean equals(Object order) {
+        if (this == order) return true;
+        if (order == null || !(order instanceof Order)) return false;
+
+        Order typedOrder = (Order) order;
+        return this.id != null && this.id.equals(typedOrder.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", user=" + user +
+                ", products=" + products +
+                ", status='" + status + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }

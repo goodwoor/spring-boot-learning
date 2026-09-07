@@ -1,28 +1,10 @@
 package spring.task1.repository;
 
-import org.springframework.stereotype.Component;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import spring.task1.entity.User;
 
-import java.util.List;
-import java.util.Map;
-
-@Component
-public class UserRepository {
-
-    public String findUserById(Map<String, List<String>> users, String id)
-    {
-        return users.values().stream()
-                .flatMap(List::stream)
-                .filter(userId -> userId.equals(id))
-                .findFirst()
-                .orElse("not found: " + id);
-    }
-
-    public List<String> getUsersByGender(Map<String, List<String>> users, String gender)
-    {
-        List<String> genderUsers = users.get(gender);
-
-        return genderUsers == null
-                ? List.of("not found gender: " + gender)
-                : genderUsers;
-    }
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+    public User findUserById(Long id);
 }

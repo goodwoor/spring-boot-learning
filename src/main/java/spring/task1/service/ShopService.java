@@ -2,6 +2,7 @@ package spring.task1.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import spring.task1.entity.User;
 import spring.task1.repository.UserRepository;
 
 import java.util.List;
@@ -30,13 +31,8 @@ public class ShopService {
         return allUsers;
     }
 
-    public String getUserById(String id)
+    public User getUserById(Long id)
     {
-        return userRepository.findUserById(allUsers, id);
-    }
-
-    public List<String> getUserByGender(String gender)
-    {
-        return userRepository.getUsersByGender(allUsers, gender);
+        return userRepository.findUserById(id);
     }
 }
