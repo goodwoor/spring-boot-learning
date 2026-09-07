@@ -1,4 +1,4 @@
-package spring.task1;
+package spring.task1.repository;
 
 import java.util.List;
 import java.util.Map;

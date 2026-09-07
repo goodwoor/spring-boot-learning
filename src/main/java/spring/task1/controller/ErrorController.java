@@ -1,4 +1,4 @@
-package spring.task1.errors;
+package spring.task1.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

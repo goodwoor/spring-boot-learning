@@ -1,6 +1,7 @@
-package spring.task1;
+package spring.task1.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import spring.task1.repository.Component;
 
 import java.util.List;
 import java.util.Map;

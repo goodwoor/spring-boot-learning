@@ -1,4 +1,4 @@
-package spring.task1.errors;
+package spring.task1.controller;
 
 public class CustomErrorResponse {
     private final String message;
