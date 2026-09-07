@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import spring.task1.service.UserService;
+import spring.task1.service.ShopService;
 
 import java.util.List;
 import java.util.Map;
@@ -14,14 +14,14 @@ import java.util.Map;
 @RequestMapping("/")
 public class Controller {
 
-    private final UserService userService;
+    private final ShopService shopService;
 
     @Autowired
     Controller(
-            UserService userService
+            ShopService shopService
     )
     {
-        this.userService = userService;
+        this.shopService = shopService;
     }
 
     @RequestMapping(value = "/", produces = "application/json")
@@ -33,7 +33,7 @@ public class Controller {
     @RequestMapping("/users/all")
     public Map<String, List<String>> getUsers()
     {
-        return userService.getAllUsers();
+        return shopService.getAllUsers();
     }
 
     @RequestMapping("/users")
@@ -43,9 +43,9 @@ public class Controller {
     )
     {
         if (id != null) {
-            return ResponseEntity.ok(userService.getUserById(id));
+            return ResponseEntity.ok(shopService.getUserById(id));
         } else if (gender != null) {
-            return ResponseEntity.ok(userService.getUserByGender(gender));
+            return ResponseEntity.ok(shopService.getUserByGender(gender));
         }
 
         return ResponseEntity.notFound().build();

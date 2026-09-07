@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class UserService {
+public class ShopService {
 
     private final UserRepository userRepository;
 
@@ -18,7 +18,7 @@ public class UserService {
     );
 
     @Autowired
-    UserService(
+    ShopService(
             UserRepository userRepository
     )
     {
