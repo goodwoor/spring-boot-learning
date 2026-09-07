@@ -1,15 +1,16 @@
 package spring.task1.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import spring.task1.repository.Component;
+import org.springframework.stereotype.Service;
+import spring.task1.repository.UserRepository;
 
 import java.util.List;
 import java.util.Map;
 
-@org.springframework.stereotype.Service
-public class Service {
+@Service
+public class UserService {
 
-    private final Component component;
+    private final UserRepository userRepository;
 
     private static final Map<String, List<String>> allUsers = Map.of(
             "male", List.of("1", "2", "3"),
@@ -17,11 +18,11 @@ public class Service {
     );
 
     @Autowired
-    Service(
-            Component component
+    UserService(
+            UserRepository userRepository
     )
     {
-        this.component = component;
+        this.userRepository = userRepository;
     }
 
     public Map<String, List<String>> getAllUsers()
@@ -31,11 +32,11 @@ public class Service {
 
     public String getUserById(String id)
     {
-        return component.findUserById(allUsers, id);
+        return userRepository.findUserById(allUsers, id);
     }
 
     public List<String> getUserByGender(String gender)
     {
-        return component.getUsersByGender(allUsers, gender);
+        return userRepository.getUsersByGender(allUsers, gender);
     }
 }

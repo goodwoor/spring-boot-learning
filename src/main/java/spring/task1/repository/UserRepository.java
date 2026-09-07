@@ -1,10 +1,12 @@
 package spring.task1.repository;
 
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.Map;
 
-@org.springframework.stereotype.Component
-public class Component {
+@Component
+public class UserRepository {
 
     public String findUserById(Map<String, List<String>> users, String id)
     {
