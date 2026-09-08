@@ -1,6 +1,7 @@
 package spring.learning.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.BatchSize;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -18,6 +19,8 @@ public class Order {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    //альтернатива - ручные запросы, соединить результат в сервисе
+    @BatchSize(size = 50)
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "order_items",

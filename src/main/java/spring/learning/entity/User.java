@@ -1,6 +1,7 @@
 package spring.learning.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.BatchSize;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +23,11 @@ public class User {
     @Column(name = "status", nullable = false, length = 30)
     private String status;
 
+    @BatchSize(size = 50)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses = new ArrayList<>();
 
+    @BatchSize(size = 50)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
 

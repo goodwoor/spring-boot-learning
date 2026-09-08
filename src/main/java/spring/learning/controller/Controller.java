@@ -10,7 +10,6 @@ import spring.learning.mappers.CommonMapper;
 import spring.learning.service.ShopService;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/")
@@ -36,9 +35,15 @@ public class Controller {
     }
 
     @RequestMapping("/users/all")
-    public Map<String, List<String>> getUsers()
+    public ResponseEntity<List<UserResponse>> getUsers()
     {
-        return shopService.getAllUsers();
+        List<UserResponse> dtoUsers = shopService
+                .getAllUsers()
+                .stream()
+                .map(mapper::toUserResponse)
+                .toList();
+
+        return ResponseEntity.ok(dtoUsers);
     }
 
     @RequestMapping("/users")
