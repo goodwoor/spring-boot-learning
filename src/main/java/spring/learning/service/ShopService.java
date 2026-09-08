@@ -21,13 +21,23 @@ public class ShopService {
         this.userRepository = userRepository;
     }
 
-    public List<User> getAllUsers()
+    public List<User> findAllUsers()
     {
         return userRepository.findAll();
     }
 
-    public Optional<User> getUserById(Long id)
+    public Optional<User> findUserById(Long id)
     {
-        return userRepository.findUserById(id);
+        return userRepository.findById(id);
+    }
+
+    public List<User> findUsersByStatusAndFirstName(String status, String firstName)
+    {
+        return userRepository.findByStatusAndFirstName(status, firstName);
+    }
+
+    public List<User> findUsersByFirstNameCharacter(String firstNameCharacter)
+    {
+        return userRepository.findByFirstNameCharacter(firstNameCharacter);
     }
 }
