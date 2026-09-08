@@ -1,4 +1,4 @@
-package spring.task1.entity;
+package spring.learning.entity;
 
 import jakarta.persistence.*;
 
@@ -42,7 +42,7 @@ public class User {
     @Override
     public boolean equals(Object user) {
         if (this == user) return true;
-        if (user == null || !(user instanceof User)) return false;
+        if (user == null || this.getClass() != user.getClass()) return false;
 
         User typedUser = (User) user;
         return this.id != null && this.id.equals(typedUser.id);
@@ -50,7 +50,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        return getClass().hashCode();
+        return this.getClass().hashCode();
     }
 
     public Long getId() {

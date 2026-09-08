@@ -1,12 +1,13 @@
-package spring.task1.service;
+package spring.learning.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import spring.task1.entity.User;
-import spring.task1.repository.UserRepository;
+import spring.learning.entity.User;
+import spring.learning.repository.UserRepository;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class ShopService {
@@ -31,7 +32,7 @@ public class ShopService {
         return allUsers;
     }
 
-    public User getUserById(Long id)
+    public Optional<User> getUserById(Long id)
     {
         return userRepository.findUserById(id);
     }

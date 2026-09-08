@@ -1,4 +1,4 @@
-package spring.task1.controller;
+package spring.learning.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

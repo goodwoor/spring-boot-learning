@@ -1,4 +1,4 @@
-package spring.task1;
+package spring.learning;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

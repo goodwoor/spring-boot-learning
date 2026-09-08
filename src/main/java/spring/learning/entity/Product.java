@@ -1,6 +1,5 @@
-package spring.task1.entity;
+package spring.learning.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -8,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "products")
 public class Product {
 
     @Id
@@ -16,7 +15,6 @@ public class Product {
     private Long id;
 
     @ManyToMany(mappedBy = "products")
-    @JsonIgnore
     private Set<Order> orders = new HashSet<>();
 
     @Column(name = "price", nullable = false, precision = 10, scale = 2)
@@ -37,7 +35,7 @@ public class Product {
     @Override
     public boolean equals(Object product) {
         if (this == product) return true;
-        if (product == null || !(product instanceof Product)) return false;
+        if (product == null || this.getClass() != product.getClass()) return false;
 
         Product typedProduct = (Product) product;
         return this.id != null && this.id.equals(typedProduct.id);

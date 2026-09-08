@@ -1,6 +1,5 @@
-package spring.task1.entity;
+package spring.learning.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,7 +12,6 @@ public class Address {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    @JsonIgnore
     private User user;
 
     @Column(name = "city", nullable = false, length = 100)
@@ -38,6 +36,20 @@ public class Address {
     }
 
     public Address() {}
+
+    @Override
+    public boolean equals(Object address) {
+        if (this == address) return true;
+        if (address == null || this.getClass() != address.getClass()) return false;
+
+        Address typedAddress = (Address) address;
+        return this.id != null && this.id.equals(typedAddress.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 
     public Long getId() {
         return id;

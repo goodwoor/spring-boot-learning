@@ -1,6 +1,5 @@
-package spring.task1.entity;
+package spring.learning.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -17,7 +16,6 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    @JsonIgnore
     private User user;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -47,7 +45,7 @@ public class Order {
     @Override
     public boolean equals(Object order) {
         if (this == order) return true;
-        if (order == null || !(order instanceof Order)) return false;
+        if (order == null || this.getClass() != order.getClass()) return false;
 
         Order typedOrder = (Order) order;
         return this.id != null && this.id.equals(typedOrder.id);
@@ -55,7 +53,7 @@ public class Order {
 
     @Override
     public int hashCode() {
-        return getClass().hashCode();
+        return this.getClass().hashCode();
     }
 
     public Long getId() {
